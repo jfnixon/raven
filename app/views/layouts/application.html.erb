@@ -1,14 +1,32 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-  <title>Raven</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "Raven" %></title>
+    <meta name="description" content="Raven application">
+    <meta name="author" content="John F. Nixon">
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+    <%= yield(:head) %>
+  </head>
+  <body>
+    <%= render 'layouts/header' %>
 
-<%= yield %>
+    <div id="main" role="main">
+      <div class="container">
+        <div class="content">
+           <div class="row">
+            <div class="span12">
+              <%= render 'layouts/messages' %>
+              <%= yield %>
+            </div>
+          </div> <!-- end of row -->
+        </div> <!-- end of content -->
+			</div> <!-- end of container -->
 
-</body>
+			<%= render 'layouts/footer' %>
+		</div> <!--! end of #main -->
+	</body>
 </html>

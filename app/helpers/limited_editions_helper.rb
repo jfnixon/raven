@@ -1,0 +1,2 @@
+module LimitedEditionsHelper
+end

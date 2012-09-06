@@ -1,4 +1,8 @@
 Raven::Application.routes.draw do
+  match "find" => "find_art#find"
+
+  resources :limited_editions
+
   match "home" => "static_pages#home"
   match "help" => "static_pages#help"
   match "about" => "static_pages#about"

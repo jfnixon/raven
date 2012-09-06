@@ -1,0 +1,27 @@
+<h1>Listing limited_editions</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Creator</th>
+    <th>Yubi key</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @limited_editions.each do |limited_edition| %>
+  <tr>
+    <td><%= limited_edition.title %></td>
+    <td><%= limited_edition.creator %></td>
+    <td><%= limited_edition.yubi_key %></td>
+    <td><%= link_to 'Show', limited_edition %></td>
+    <td><%= link_to 'Edit', edit_limited_edition_path(limited_edition) %></td>
+    <td><%= link_to 'Destroy', limited_edition, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Limited edition', new_limited_edition_path %>

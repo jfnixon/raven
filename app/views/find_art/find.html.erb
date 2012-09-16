@@ -1,23 +1,11 @@
 <h2>Press your Token</h2>
 <p>Insert the Raven token, and press the button.</p>
-<%= form_for(@limited_edition, :url => limited_edition_path(@limited_edition), :method => :put) do |f| %>
-  <% if @limited_edition.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@limited_edition.errors.count, "error") %> prohibited this limited_edition from being saved:</h2>
-
-      <ul>
-      <% @limited_edition.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+<%= form_tag(:controller => :find_art_controller, :action => :yfind, :method => :get) do %>
   <div class="field">
     Token<br />
-    <%= f.text_field :yubi_opt %>
+    <%= text_field_tag :yubi_opt %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= submit_tag %>
   </div>
 <% end %>

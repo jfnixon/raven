@@ -1,5 +1,5 @@
 Raven::Application.routes.draw do
-  match "find" => "find_art#find"
+  match "yfind" => "find_art#yfind"
 
   resources :limited_editions
 

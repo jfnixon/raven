@@ -1,2 +1,33 @@
-<h1>StaticPages#home</h1>
-<p>Find me in app/views/static_pages/home.html.erb</p>
+  <!-- Main hero unit for a primary marketing message or call to action -->
+  <div class="hero-unit">
+	  <!-- <%= image_tag "raven_icon.png" %> -->
+    <h1>Your unique collection</h1>
+    <p>Start building your unique and exclusive collection of fine art and digital books. Project Raven provides the provable exclusivity for your collection of limited editions, collector's editions, and artist originals and approved reproductions. In a world of unauthorized copies, Project Raven protects your investment and enhances your enjoyment.</p>
+    <%= link_to "Sign up", new_user_registration_path, :class => "btn btn-primary btn-large" %>
+  </div>
+  <hr>
+	<%= form_tag :controller => :find_art, :action => :yfind, :method => 'get' do %>
+	  <%= text_field_tag :yubi_opt, params[:yubi_opt], :id => 'search_field' %>
+    <%= submit_tag "Quick Search", :name => nil %> 
+    <%= link_to_function "Clear", "$('search_field').clear()" %>
+  <% end %>
+	<hr>
+
+  <!-- Example row of columns -->
+  <div class="row">
+    <div class="span4">
+      <h2>Digital Library</h2>
+      <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+      <p><a class="btn" href="#">View details &raquo;</a></p>
+    </div>
+    <div class="span4">
+      <h2>Digital Art</h2>
+      <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+      <p><a class="btn" href="#">View details &raquo;</a></p>
+   </div>
+    <div class="span4">
+      <h2>Physical Art</h2>
+      <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+      <p><a class="btn" href="#">View details &raquo;</a></p>
+    </div>
+  </div>

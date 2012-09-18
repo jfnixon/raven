@@ -11,12 +11,36 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120905230635) do
+ActiveRecord::Schema.define(:version => 20120918164047) do
 
-  create_table "limited_editions", :force => true do |t|
+  create_table "arts", :force => true do |t|
+    t.text     "yubikey"
+    t.integer  "user_id"
+    t.integer  "book_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "le_count"
+  end
+
+  add_index "arts", ["book_id"], :name => "index_arts_on_book_id"
+  add_index "arts", ["user_id"], :name => "index_arts_on_user_id"
+
+  create_table "books", :force => true do |t|
+    t.text     "author"
+    t.text     "image"
+    t.integer  "signing_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "le_max"
+    t.string   "le_desc"
     t.string   "title"
-    t.string   "creator"
-    t.string   "yubi_key"
+  end
+
+  add_index "books", ["signing_id"], :name => "index_books_on_signing_id"
+
+  create_table "signings", :force => true do |t|
+    t.text     "image"
+    t.text     "greeting"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

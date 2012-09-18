@@ -1,7 +1,9 @@
 Raven::Application.routes.draw do
-  match "yfind" => "find_art#yfind"
+  resources :books
 
-  resources :limited_editions
+  resources :arts
+
+  match "yfind" => "find_art#yfind"
 
   match "home" => "static_pages#home"
   match "help" => "static_pages#help"

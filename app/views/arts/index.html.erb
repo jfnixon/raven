@@ -1,0 +1,29 @@
+<h1>Listing arts</h1>
+
+<table>
+  <tr>
+    <th>Yubikey</th>
+    <th>User</th>
+    <th>Book</th>
+    <th>of <%= art.book.le_max %></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @arts.each do |art| %>
+  <tr>
+    <td><%= art.yubikey %></td>
+    <td><%= art.user %></td>
+    <td><%= art.book.title %></td>
+    <td><%= art.book.le_count %></td>
+    <td><%= link_to 'Show', art %></td>
+    <td><%= link_to 'Edit', edit_art_path(art) %></td>
+    <td><%= link_to 'Destroy', art, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Art', new_art_path %>

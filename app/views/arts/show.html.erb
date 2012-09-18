@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h2>Ownership record</h2>
+<p>
+  <b>Yubikey:</b>
+  <%= @art.yubikey %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @art.user %>
+</p>
+
+<p>
+  <b>Book:</b>
+  <%= @art.book.title %>
+</p>
+
+<p>
+  <b><%= @art.le_count %></b> of <%= @art.book.le_max %>
+</p>
+
+<% if @art.book.signed? %>
+  <p><em>Signed</em></p>
+<% end %>
+
+
+<%= link_to 'Edit', edit_art_path(@art) %> |
+<%= link_to 'Back', arts_path %>

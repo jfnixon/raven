@@ -5,7 +5,7 @@
     <th>Yubikey</th>
     <th>User</th>
     <th>Book</th>
-    <th>of <%= art.book.le_max %></th>
+    <th>LE count</th>
     <th></th>
     <th></th>
     <th></th>
@@ -16,7 +16,11 @@
     <td><%= art.yubikey %></td>
     <td><%= art.user %></td>
     <td><%= art.book.title %></td>
-    <td><%= art.book.le_count %></td>
+    <% if art.book.le_count > 1 %>
+      <td><%= art.book.le_count %></td>
+    <% else %>
+      <td>Unique</td>
+    <% end %>
     <td><%= link_to 'Show', art %></td>
     <td><%= link_to 'Edit', edit_art_path(art) %></td>
     <td><%= link_to 'Destroy', art, method: :delete, data: { confirm: 'Are you sure?' } %></td>

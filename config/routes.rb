@@ -1,6 +1,5 @@
 Raven::Application.routes.draw do
   resources :books
-
   resources :arts
 
   match "yfind" => "find_art#yfind"

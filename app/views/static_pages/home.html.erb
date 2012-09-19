@@ -6,12 +6,6 @@
     <%= link_to "Sign up", new_user_registration_path, :class => "btn btn-primary btn-large" %>
   </div>
   <hr>
-	<%= form_tag :controller => :find_art, :action => :yfind, :method => 'get' do %>
-	  <%= text_field_tag :yubi_opt, params[:yubi_opt], :id => 'search_field' %>
-    <%= submit_tag "Quick Search", :name => nil %> 
-    <%= link_to_function "Clear", "$('search_field').clear()" %>
-  <% end %>
-	<hr>
 
   <!-- Example row of columns -->
   <div class="row">

@@ -1,4 +1,4 @@
-class ArtWorksController < ApplicationController
+class ArtworksController < ApplicationController
   # GET /artworks
   # GET /artworks.json
   def index

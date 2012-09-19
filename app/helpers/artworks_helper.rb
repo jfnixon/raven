@@ -1,2 +1,2 @@
-module ArtsHelper
+module ArtworksHelper
 end

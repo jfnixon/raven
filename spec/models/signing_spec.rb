@@ -3,8 +3,8 @@
 # Table name: signings
 #
 #  id         :integer          not null, primary key
-#  image      :text
-#  greeting   :text
+#  image      :string(255)
+#  greeting   :string(255)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

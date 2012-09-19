@@ -1,17 +1,19 @@
 # == Schema Information
 #
-# Table name: arts
+# Table name: artworks
 #
-#  id         :integer          not null, primary key
-#  yubikey    :text
-#  user_id    :integer
-#  book_id    :integer
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  le_count   :integer
+#  id           :integer          not null, primary key
+#  yubikey      :string(255)
+#  personal_msg :string(255)
+#  work_number  :integer
+#  signing_id   :integer
+#  user_id      :integer
+#  book_id      :integer
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
 #
 
-class Art < ActiveRecord::Base
+class Artwork < ActiveRecord::Base
   attr_accessible :yubikey
   
   # this artwork belongs to a single user

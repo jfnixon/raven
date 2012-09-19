@@ -1,8 +1,8 @@
 class CreateSignings < ActiveRecord::Migration
   def change
     create_table :signings do |t|
-      t.text :image
-      t.text :greeting
+      t.string :image
+      t.string :greeting
 
       t.timestamps
     end

@@ -2,15 +2,14 @@
 #
 # Table name: books
 #
-#  id         :integer          not null, primary key
-#  author     :text
-#  image      :text
-#  signing_id :integer
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  le_max     :integer
-#  le_desc    :string(255)
-#  title      :string(255)
+#  id           :integer          not null, primary key
+#  author       :string(255)
+#  image        :string(255)
+#  edition_size :integer
+#  edition_desc :string(255)
+#  artworks_id  :integer
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
 #
 
 class Book < ActiveRecord::Base
@@ -20,7 +19,7 @@ class Book < ActiveRecord::Base
   belongs_to :signing
   
   # point back to the collection
-  has_many :arts
+  has_many :artworks
   
   def signed?
     signing_id

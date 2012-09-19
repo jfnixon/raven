@@ -11,36 +11,35 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120918164047) do
+ActiveRecord::Schema.define(:version => 20120918163929) do
 
-  create_table "arts", :force => true do |t|
-    t.text     "yubikey"
+  create_table "artworks", :force => true do |t|
+    t.string   "yubikey"
+    t.string   "personal_msg"
+    t.integer  "work_number"
+    t.integer  "signing_id"
     t.integer  "user_id"
     t.integer  "book_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.integer  "le_count"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
-  add_index "arts", ["book_id"], :name => "index_arts_on_book_id"
-  add_index "arts", ["user_id"], :name => "index_arts_on_user_id"
+  add_index "artworks", ["book_id"], :name => "index_artworks_on_book_id"
+  add_index "artworks", ["user_id"], :name => "index_artworks_on_user_id"
 
   create_table "books", :force => true do |t|
-    t.text     "author"
-    t.text     "image"
-    t.integer  "signing_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.integer  "le_max"
-    t.string   "le_desc"
-    t.string   "title"
+    t.string   "author"
+    t.string   "image"
+    t.integer  "edition_size"
+    t.string   "edition_desc"
+    t.integer  "artworks_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
-  add_index "books", ["signing_id"], :name => "index_books_on_signing_id"
-
   create_table "signings", :force => true do |t|
-    t.text     "image"
-    t.text     "greeting"
+    t.string   "image"
+    t.string   "greeting"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

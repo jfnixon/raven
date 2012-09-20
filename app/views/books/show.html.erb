@@ -11,10 +11,15 @@
 </p>
 
 <p>
-  <b>Signing:</b>
-  <%= @book.signing %>
+  <b>Edition notes:</b>
+  <%= @book.edition_desc %>
 </p>
 
+<% if @book.edition_size > 1 %>
+  <p>Edition limited to <b><%= @book.edition_size %></b> copes.</p>
+<% else %>
+  <p>Original version.</p>
+<% end %>
 
 <%= link_to 'Edit', edit_book_path(@book) %> |
 <%= link_to 'Back', books_path %>

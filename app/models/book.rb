@@ -13,15 +13,9 @@
 #
 
 class Book < ActiveRecord::Base
-  attr_accessible :author, :image
-  
-  # point off to the personalized stuff
-  belongs_to :signing
+  attr_accessible :author, :image, :title, :edition_size, :edition_desc
   
   # point back to the collection
   has_many :artworks
-  
-  def signed?
-    signing_id
-  end
+
 end

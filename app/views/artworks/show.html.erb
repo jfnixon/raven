@@ -3,27 +3,29 @@
 <h2>Ownership record</h2>
 <p>
   <b>Yubikey:</b>
-  <%= @art.yubikey %>
+  <% if @artwork.yubikey && @artwork.yubikey.size %>
+    <%= @artwork.yubikey %>
+  <% else %>
+    <quiet>Unassigned</quiet>
+  <% end %>
 </p>
 
 <p>
   <b>User:</b>
-  <%= @art.user %>
+  <%= @artwork.user %>
 </p>
 
 <p>
   <b>Book:</b>
-  <%= @art.book.title %>
+  <%= @artwork.book.title %>
 </p>
 
 <p>
-  <b><%= @art.le_count %></b> of <%= @art.book.le_max %>
+  <% if @artwork.book.edition_size > 1 %>
+    <b><%= @artwork.work_number %></b> of <%= @artwork.book.edition_size %>
+  <% else %>
+    <b>Original work</b>
+  <% end %>
 </p>
 
-<% if @art.book.signed? %>
-  <p><em>Signed</em></p>
-<% end %>
-
-
-<%= link_to 'Edit', edit_art_path(@art) %> |
-<%= link_to 'Back', arts_path %>
+<%= link_to 'Edit', edit_artwork_path(@artwork) %> | <%= link_to 'Back', artworks_path %>

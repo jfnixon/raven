@@ -14,7 +14,7 @@
 #
 
 class Artwork < ActiveRecord::Base
-  attr_accessible :yubikey
+  attr_accessible :yubikey, :work_number, :user_id, :book_id
   
   # this artwork belongs to a single user
   belongs_to :user
@@ -23,6 +23,8 @@ class Artwork < ActiveRecord::Base
   # Later we'll make this polymorphic.
   belongs_to :book
   accepts_nested_attributes_for :book
+  # validates :book_id, :presence => true
+  # validates :work_number, :numericality => { :only_integer => true } 
   
   # yubi_otp is a virtual asset. We only need the first 12 characters to store in the yubikey.
   # yubi_valid determines if the OTP is valid.
@@ -38,5 +40,9 @@ class Artwork < ActiveRecord::Base
   def self.yubi_find(key)
     search_key = key[0..1]
     self.where(:yubikey => search_key).first
+  end
+  
+  def self.my_collection(user)
+    where(:user_id => user.id)
   end
 end

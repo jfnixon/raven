@@ -13,6 +13,9 @@
 #  last_sign_in_at        :datetime
 #  current_sign_in_ip     :string(255)
 #  last_sign_in_ip        :string(255)
+#  first_name             :string(255)
+#  middle_name            :string(255)      default("")
+#  last_name              :string(255)
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #

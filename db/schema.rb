@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120920172204) do
+ActiveRecord::Schema.define(:version => 20120918163929) do
 
   create_table "artworks", :force => true do |t|
     t.string   "yubikey"
@@ -29,13 +29,12 @@ ActiveRecord::Schema.define(:version => 20120920172204) do
 
   create_table "books", :force => true do |t|
     t.string   "author"
-    t.string   "image"
-    t.integer  "edition_size"
-    t.string   "edition_desc"
-    t.integer  "artworks_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
     t.string   "title"
+    t.string   "image",        :default => ""
+    t.integer  "edition_size", :default => 1
+    t.string   "edition_desc", :default => ""
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
   end
 
   create_table "signings", :force => true do |t|
@@ -56,6 +55,9 @@ ActiveRecord::Schema.define(:version => 20120920172204) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "first_name"
+    t.string   "middle_name",            :default => ""
+    t.string   "last_name"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
   end

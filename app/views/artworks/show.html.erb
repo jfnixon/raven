@@ -2,7 +2,7 @@
 
 <h2>Ownership record</h2>
 <p>
-  <b>Yubikey:</b>
+  <b>Yubikey: </b>
   <% if @artwork.yubikey && @artwork.yubikey.size %>
     <%= @artwork.yubikey %>
   <% else %>
@@ -11,8 +11,7 @@
 </p>
 
 <p>
-  <b>User:</b>
-  <%= @artwork.user %>
+  <b>User: </b><%= @artwork.user_id ? @artwork.user.full_name : 'Available' %> <quiet>(<%= @artwork.user_id.nil? ? 'nil' :  @artwork.user_id %>)</quiet>
 </p>
 
 <p>

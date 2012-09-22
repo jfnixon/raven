@@ -32,6 +32,12 @@ class DeviseCreateUsers < ActiveRecord::Migration
 
       ## Token authenticatable
       # t.string :authentication_token
+      
+      # Custom, non-Devise section
+      
+      t.string :first_name
+      t.string :middle_name, :default => ""
+      t.string :last_name
 
 
       t.timestamps

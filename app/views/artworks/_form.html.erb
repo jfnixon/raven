@@ -19,14 +19,16 @@
     <%= f.label :work_number %><br />
     <%= f.text_field :work_number %>
   </div>
+  <fieldset><legend>Admin use only</legend>
   <div class="field">
-    <%= f.label :owner %> <span class="admin">(admin)</span><br />
+    <%= f.label :owner_id%> <span class="admin">(admin)</span><br />
     <%= f.text_field :user_id %>
   </div>  
   <div class="field">
-    <%= f.label :book %> <span class="admin">(admin)</span><br />
+    <%= f.label :book_id %> <span class="admin">(admin)</span><br />
     <%= f.text_field :book_id %>
   </div>
+  </fieldset>
   <div class="actions">
     <%= f.submit :class => "btn btn-primary" %>
   </div>

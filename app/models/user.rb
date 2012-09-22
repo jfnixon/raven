@@ -13,6 +13,9 @@
 #  last_sign_in_at        :datetime
 #  current_sign_in_ip     :string(255)
 #  last_sign_in_ip        :string(255)
+#  first_name             :string(255)
+#  middle_name            :string(255)      default("")
+#  last_name              :string(255)
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #
@@ -24,10 +27,22 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  attr_accessor :password_confirmation, :email_confirmation
+
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible :email, :email_confirmation, :password, :password_confirmation, :remember_me
+  attr_accessible :first_name, :middle_name, :last_name
+  
   # attr_accessible :title, :body
   
   # add in the Raven specific stuff
   has_many :arts
+  validates :first_name, :presence => true
+  validates :last_name, :presence => true
+  validates :email, :presence => true, :uniqueness => true, :confirmation => true
+  validates :email_confirmation, :presence => true, :on => :save
+  
+  def full_name
+    first_name + " " + middle_name[0..0] + ". " + last_name
+  end
 end

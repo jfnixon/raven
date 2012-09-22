@@ -1,37 +1,6 @@
 <h1>Listing artworks</h1>
 
-<table>
-  <tr>
-    <th>Yubikey</th>
-    <th>User</th>
-    <th>Title</th>
-    <th>Work number</th>
-    <th>Personal Message</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @artworks.each do |art| %>
-  <tr>
-    <td><%= art.yubikey %></td>
-    <td><%= art.user ? art.user.name : "Unsold" %></td>
-    <td><%= art.book.title %></td>
-    <% if art.book.edition_size > 1 %>
-      <td><%= art.work_number %> of <%= art.book.edition_size %></td>
-    <% else %>
-      <td><em>Unique work</em></td>
-    <% end %>
-    <td><%= art.personal_msg %></td>
-    <div class="btn-group">
-      <td><%= link_to 'Show', art, :class => "btn" %></td>
-      <td><%= link_to 'Edit', edit_artwork_path(art), :class => "btn" %></td>
-      <td><%= link_to 'Destroy', art, :method => :delete, :data => { confirm: 'Are you sure?' }, :class => "btn btn-danger" %></td>
-    </div>
-  </tr>
-<% end %>
-</table>
-
+<%= render :partial => "arttable", :locals => { :artlist => @artworks } %>
 <br />
 
 <%= link_to 'New Art', new_artwork_path %>

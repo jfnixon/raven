@@ -6,7 +6,7 @@ class ArtworksController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json => @artworks }
+      format.json { render :json => @artworks }
     end
   end
 
@@ -17,7 +17,7 @@ class ArtworksController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json => @artwork }
+      format.json { render :json => @artwork }
     end
   end
 
@@ -28,7 +28,7 @@ class ArtworksController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json => @artwork }
+      format.json { render :json => @artwork }
     end
   end
 
@@ -40,15 +40,15 @@ class ArtworksController < ApplicationController
   # POST /arts
   # POST /arts.json
   def create
-    @artwork = Artwork.new(params[:art])
+    @artwork = Artwork.new(params[:artwork])
 
     respond_to do |format|
       if @artwork.save
-        format.html { redirect_to @artwork, notice => 'Art was successfully created.' }
-        format.json { render json => @artwork, status => :created, location => @artwork }
+        format.html { redirect_to @artwork, :notice => 'Art was successfully created.' }
+        format.json { render :json => @artwork, :status => :created, :location => @artwork }
       else
-        format.html { render action => "new" }
-        format.json { render json => @artwork.errors, status => :unprocessable_entity }
+        format.html { render :action => "new" }
+        format.json { render :json => @artwork.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -59,12 +59,12 @@ class ArtworksController < ApplicationController
     @artwork = Artwork.find(params[:id])
 
     respond_to do |format|
-      if @artwork.update_attributes(params[:art])
+      if @artwork.update_attributes(params[:artwork])
         format.html { redirect_to @artwork, notice => 'Art was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action => "edit" }
-        format.json { render json => @artwork.errors, status => :unprocessable_entity }
+        format.html { render :action => "edit" }
+        format.json { render :json => @artwork.errors, :status => :unprocessable_entity }
       end
     end
   end

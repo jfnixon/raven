@@ -1,28 +1,6 @@
 <h1>Listing books</h1>
 
-<table>
-  <tr>
-    <th>Author</th>
-    <th>Image</th>
-    <th>Description</th>
-    <th>Limited to</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @books.each do |book| %>
-  <tr>
-    <td><%= book.author %></td>
-    <td><%= book.image %></td>
-    <td><%= book.edition_desc %></td>
-    <td><%= book.edition_size %></td>
-    <td><%= link_to 'Show', book, :class => "btn" %></td>
-    <td><%= link_to 'Edit', edit_book_path(book), :class => "btn" %></td>
-    <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %></td>
-  </tr>
-<% end %>
-</table>
+<%= render :partial => "booktable", :locals => { :booklist => @books } %>
 
 <br />
 

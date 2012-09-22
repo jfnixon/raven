@@ -23,6 +23,7 @@ class Artwork < ActiveRecord::Base
   # Later we'll make this polymorphic.
   belongs_to :book
   accepts_nested_attributes_for :book
+  
   # validates :book_id, :presence => true
   # validates :work_number, :numericality => { :only_integer => true } 
   
@@ -38,8 +39,7 @@ class Artwork < ActiveRecord::Base
   end
   
   def self.yubi_find(key)
-    search_key = key[0..1]
-    self.where(:yubikey => search_key).first
+    where(:yubikey => key[0..11]).first
   end
   
   def self.my_collection(user)

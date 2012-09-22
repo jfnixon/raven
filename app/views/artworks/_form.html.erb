@@ -14,7 +14,7 @@
   <%= f.input :yubikey %>
   <%= f.input :work_number %>
   <fieldset class="admin_edit"><legend>Admin use only</legend>
-  <%= f.association :user %>
+  <%= f.association :user, :label => "Owner", :label_method => :full_name %>
   <%= f.association :book %>
   </fieldset>
   <%= f.button :submit, :class => "btn btn-primary" %>

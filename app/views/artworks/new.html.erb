@@ -1,43 +1,29 @@
-<h2>Add a new Art limited edition</h2>
+<h2>Add a new Artwork limited edition <em>rethink</em></h2>
 
-<%= form_for(@art) do |f| %>
-  <% if @art.errors.any? %>
+<%= simple_form_for(@artwork) do |f| %>
+  <% if @artwork.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@art.errors.count, "error") %> prohibited this art from being saved:</h2>
+      <h2><%= pluralize(@artwork.errors.count, "error") %> prohibited this artwork from being saved:</h2>
 
       <ul>
-      <% @art.errors.full_messages.each do |msg| %>
+      <% @artwork.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :yubikey %>(optional)<br />
-    <%= f.text_field :yubikey %>
-  </div>
+  <%= f.input :yubikey, :hint => "optional" %>
 
   <h3>Create the limited edition description</h3>
   <div class="book">
-    <%= f.fields_for(:book) do |b| %>
-      <div class="field">
-        <%= f.label :title %><br />
-        <%= f.text_field :title %>
-      </div>
-      <div class="field">
-        <%= f.label :author %><br />
-        <%= f.text_field :author %>
-      </div>
-      <div class="field">
-        <%= f.label :image %><br />
-        <%= f.text_field :image %>
-      </div>
+    <%= f.simple_fields_for :book do |book| %>
+      <%= book.input :title, :required => true %>
+      <%= book.input :author, :required => true %>
+      <%= book.input :image, :hint => "filename" %>
     <% end %>
   </div>
-  <div class="actions">
-    <%= f.submit :class => "btn btn-primary" %>
-  </div>
+  <%= f.submit :class => "btn btn-primary" %>
 <% end %>
 
-<%= link_to 'Back', arts_path %>
+<%= link_to 'Back', artworks_path %>

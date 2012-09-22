@@ -23,8 +23,10 @@ class ArtworksController < ApplicationController
 
   # GET /artworks/new
   # GET /artworks/new.json
+  # TBD: rethink how this operation works.
   def new
     @artwork = Artwork.new
+    @artwork.build_book
 
     respond_to do |format|
       format.html # new.html.erb
@@ -41,6 +43,8 @@ class ArtworksController < ApplicationController
   # POST /arts.json
   def create
     @artwork = Artwork.new(params[:artwork])
+    
+    # somehow we must create the additional artwork objects for the edition.
 
     respond_to do |format|
       if @artwork.save

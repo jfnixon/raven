@@ -1,4 +1,4 @@
-<%= form_for(@artwork) do |f| %>
+<%= simple_form_for(@artwork) do |f| %>
   <% if @artwork.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@art.errors.count, "error") %> prohibited this art from being saved:</h2>
@@ -11,25 +11,11 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :yubikey %><br />
-    <%= f.text_field :yubikey %>
-  </div>
-  <div class="field">
-    <%= f.label :work_number %><br />
-    <%= f.text_field :work_number %>
-  </div>
-  <fieldset><legend>Admin use only</legend>
-  <div class="field">
-    <%= f.label :owner_id%> <span class="admin">(admin)</span><br />
-    <%= f.text_field :user_id %>
-  </div>  
-  <div class="field">
-    <%= f.label :book_id %> <span class="admin">(admin)</span><br />
-    <%= f.text_field :book_id %>
-  </div>
+  <%= f.input :yubikey %>
+  <%= f.input :work_number %>
+  <fieldset class="admin_edit"><legend>Admin use only</legend>
+  <%= f.association :user %>
+  <%= f.association :book %>
   </fieldset>
-  <div class="actions">
-    <%= f.submit :class => "btn btn-primary" %>
-  </div>
+  <%= f.button :submit, :class => "btn btn-primary" %>
 <% end %>

@@ -1,30 +1,41 @@
 <p id="notice"><%= notice %></p>
 
-<h2>Ownership record</h2>
-<p>
-  <b>Yubikey: </b>
-  <% if @artwork.yubikey && @artwork.yubikey.size %>
-    <%= @artwork.yubikey %>
-  <% else %>
-    <quiet>Unassigned</quiet>
+<% if @artwork.nil? %>
+  <h3>No artwork found</h3>
+<% else %>
+  <h2>Ownership record</h2>
+  <% if admin_user? %>
+    <p>
+      <b>Yubikey: </b>
+      <% if @artwork.yubikey && @artwork.yubikey.size %>
+        <%= @artwork.yubikey %>
+      <% else %>
+        <quiet>Unassigned</quiet>
+      <% end %>
+    </p>
   <% end %>
-</p>
-
-<p>
-  <b>User: </b><%= @artwork.user_id ? @artwork.user.full_name : 'Available' %> <quiet>(<%= @artwork.user_id.nil? ? 'nil' :  @artwork.user_id %>)</quiet>
-</p>
-
-<p>
-  <b>Book:</b>
-  <%= @artwork.book.title %>
-</p>
-
-<p>
-  <% if @artwork.book.edition_size > 1 %>
-    <b><%= @artwork.work_number %></b> of <%= @artwork.book.edition_size %>
-  <% else %>
-    <b>Original work</b>
+  
+  <% if !@yubi_valid.nil? %>
+    <p><span class="label label-success">Verified</span></p>
+  <% elsif @artwork.yubikey && @artwork.yubikey.size %>
+    <p><span class="label label-info">Verifiable</span></p>
   <% end %>
-</p>
+
+  <p>
+    <b>Owner: </b><%= @artwork.user_id ? @artwork.user.full_name : 'Available' %> <quiet>(<%= @artwork.user_id.nil? ? 'nil' :  @artwork.user_id %>)</quiet>
+  </p>
+
+  <p>
+    <b>Book: </b><%= @artwork.book.title %>
+  </p>
+
+  <p>
+    <% if @artwork.book.edition_size > 1 %>
+      <b><%= @artwork.work_number %></b> of <%= @artwork.book.edition_size %>
+    <% else %>
+      <b>Original work</b>
+    <% end %>
+  </p>
+<% end %>
 
 <%= link_to 'Edit', edit_artwork_path(@artwork) %> | <%= link_to 'Back', artworks_path %>

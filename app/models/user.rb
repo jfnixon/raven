@@ -37,12 +37,11 @@ class User < ActiveRecord::Base
   
   # add in the Raven specific stuff
   has_many :arts
-  validates :first_name, :presence => true
-  validates :last_name, :presence => true
+  validates :password, :presence => true
   validates :email, :presence => true, :uniqueness => true, :confirmation => true
   validates :email_confirmation, :presence => true, :on => :save
   
   def full_name
-    first_name + " " + middle_name[0..0] + ". " + last_name
+    first_name + " " + (middle_name.blank? ? " " : middle_name[0..0] + ". ") + last_name
   end
 end

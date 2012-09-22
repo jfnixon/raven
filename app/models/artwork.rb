@@ -14,7 +14,7 @@
 #
 
 class Artwork < ActiveRecord::Base
-  attr_accessible :yubikey, :work_number, :user_id, :book_id
+  attr_accessible :yubikey, :yubi_otp, :work_number, :user_id, :book_id
   
   # this artwork belongs to a single user
   belongs_to :user
@@ -34,8 +34,16 @@ class Artwork < ActiveRecord::Base
     self.yubikey = yubi[0..11]
   end
   
-  def yubi_valid?(yubi)
-    true
+  # otp.replayed? will tell if there is a replay
+  
+  def yubi_valid?(yubiOTP)
+    begin
+      otp = Yubikey::OTP::Verify.new(yubiOTP)
+
+      otp.valid? ? true : false
+    rescue Yubikey::OTP::InvalidOTPError
+      false
+    end
   end
   
   def self.yubi_find(key)

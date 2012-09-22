@@ -84,4 +84,21 @@ class ArtworksController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  #
+  # search - you can type an author, a title, or a yubi_otp in the search field
+  #
+  
+  def search
+    if yubi_valid?(params[:search_string])
+      @yubi_valid = true
+      @artwork = Art.yubi_find(params[:search_string])
+    elsif title_valid?(params[:search_string])
+      @artwork = Art.title_find(params[:search_string])
+    else
+      @artwork = Art.author_find(params[:search_string])
+    end
+    
+    render show
+  end
 end

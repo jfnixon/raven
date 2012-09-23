@@ -11,7 +11,7 @@
     </div>
   <% end %>
 
-  <%= f.input :yubi_otp %>
+  <%= f.input :yubi_otp, :as => :string %>
   <%= f.input :work_number %>
   <fieldset class="admin_edit"><legend>Admin use only</legend>
   <%= f.association :user, :label => "Owner", :label_method => :full_name %>

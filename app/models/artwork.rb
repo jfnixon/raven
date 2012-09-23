@@ -30,8 +30,12 @@ class Artwork < ActiveRecord::Base
   # yubi_otp is a virtual asset. We only need the first 12 characters to store in the yubikey.
   # yubi_valid determines if the OTP is valid.
   
-  def yubi_otp(yubi)
+  def yubi_otp=(yubi)
     self.yubikey = yubi[0..11]
+  end
+  
+  def yubi_otp
+    yubikey
   end
   
   # otp.replayed? will tell if there is a replay

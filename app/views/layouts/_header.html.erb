@@ -4,16 +4,16 @@
 			<%= image_tag "raven_icon40.png" %>
 			<%= link_to "Raven", root_path, :class => 'brand' %>
 			<ul class = "nav pull-right">
-				<li><%= link_to('Home', home_path) %></li>
+				<li><%= link_to(home_path) do %><i class="icon-home icon-white"></i> Home<% end %></li>
 				<li><%= link_to('About', about_path) %></li>
-				<li><%= link_to('Help', help_path) %></li>
+				<li><%= link_to(help_path) do %><i class="icon-question-sign icon-white"></i> Help<% end %></li>
 			  <% if user_signed_in? %>
-			    <li><%= link_to('Logout', destroy_user_session_path, :method=>'delete') %></li>
+			    <li><%= link_to(destroy_user_session_path, :method=>'delete') do %><i class="icon-user icon-white"></i> Logout<% end %></li>
 			  <% else %>
-			    <li><%= link_to('Login', new_user_session_path)  %></li>
+			    <li><%= link_to(new_user_session_path) do %><i class="icon-user icon-white"></i> Login<% end %></li>
 			  <% end %>
 			  <% if user_signed_in? %>
-			    <li><%= link_to('Edit account', edit_user_registration_path) %></li>
+			    <li><%= link_to(edit_user_registration_path) do %><i class="icon-cog icon-white"></i> Edit account<% end %></li>
 			  <% else %>
 			    <li><%= link_to('Sign up', new_user_registration_path) %></li>
 			  <% end %>

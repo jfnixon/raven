@@ -19,11 +19,13 @@ class Book < ActiveRecord::Base
   has_many :artworks
   
   # The search function looks for books with the specified vale in title or author
+  # TBD we could make this code cleaner.
   
   def self.search(params)
     if params.has_key?(:search)
       if params[:search].length == 44
-        Artwork.where("yubikey is ?", params[:search][0..11]).first.book
+        art = Artwork.where("yubikey is ?", params[:search][0..11])
+        art.nil? ? Book.none : [art.first.book]
       else
         q = "%#{params[:search]}%"
         Book.where("title LIKE ? OR author LIKE ?", q, q)

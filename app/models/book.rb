@@ -18,21 +18,24 @@ class Book < ActiveRecord::Base
   # point back to the collection
   has_many :artworks
   
-  # The search function looks for books with the specified vale in title or author
-  # TBD we could make this code cleaner.
+  # The search function looks for books with the specified value in title or author
+  # TBD - just uses one term.
   
   def self.search(params)
-    if params.has_key?(:search)
-      if params[:search].length == 44
-        art = Artwork.where("yubikey is ?", params[:search][0..11])
-        art.nil? ? Book.none : [art.first.book]
-      else
-        q = "%#{params[:search]}%"
-        Book.where("title LIKE ? OR author LIKE ?", q, q)
-      end
-    else
-      Book.all
+    
+    unless params.has_key?(:search)
+      return Book.all
     end
+    
+    if Artwork.yubi_ish? params[:search]
+        art = Artwork.find_by_yubi params[:search][0..11]
+        return [art.first.book] unless art == Artwork.none
+    end
+
+    # either we didn't find any book with the yubikey, or we have a non-yubi pattern
+    
+    q = "%#{params[:search]}%"
+    Book.where("title LIKE ? OR author LIKE ?", q, q)
   end
 
 end

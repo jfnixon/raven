@@ -53,12 +53,14 @@ class Artwork < ActiveRecord::Base
   
   # otp.replayed? will tell if there is a replay
   
-  def self.yubi_valid?(yubiOTP)
+  def self.yubi_valid?(yubiotp)
     begin
-      otp = Yubikey::OTP::Verify.new(yubiOTP)
+      otp = Yubikey::OTP::Verify.new(yubiotp)
+      logger.debug("Yubi_valid: #{otp.valid?} and #{yubiotp}")
 
-      otp.valid? ? true : false
+      otp.valid?
     rescue Yubikey::OTP::InvalidOTPError
+      logger.debug("Yubi_valid: InvalidOTPError")
       false
     end
   end
@@ -66,11 +68,31 @@ class Artwork < ActiveRecord::Base
   def self.find_by_yubi(key)
     where(:yubikey => key[0..11])
   end
-  
+ 
   # end of Yubikey methods
   ###########
   
   def self.my_collection(user)
     where(:user_id => user.id)
+  end
+  
+  # The search function looks for artwork with a yubikey match or the search term in title or author
+  # TBD - just uses one term.
+  
+  def self.search(params)
+    
+    unless params.has_key?(:search)
+      return Artwork.all
+    end
+    
+    if Artwork.yubi_ish? params[:search]
+        art = Artwork.find_by_yubi params[:search][0..11]
+        return [art] unless art.empty?
+    end
+
+    # either we didn't find any book with the yubikey, or we have a non-yubi pattern
+    
+    q = "%#{params[:search]}%"
+    Artwork.where("book.title LIKE ? OR book.author LIKE ?", q, q)
   end
 end

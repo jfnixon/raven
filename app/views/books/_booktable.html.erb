@@ -21,7 +21,7 @@
           <td><%= book.author %></td>
           <td><%= book.image %></td>
           <td><%= book.edition_desc %></td>
-          <td><%= book.edition_size %></td>
+          <td><% if yubi_valid %><span class="label label-info">validated</span> <% end %><%= book.edition_size %></td>
           <div class="btn-group">
             <td><%= link_to 'Show', book, :class => "btn" %></td>
             <td><%= link_to 'Edit', edit_book_path(book), :class => "btn" %></td>

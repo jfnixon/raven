@@ -1,8 +1,15 @@
 class BooksController < ApplicationController
   # GET /books
   # GET /books.json
+  #
+  # TBD - when we generalize search, we'll probably do this via artworks.
   def index
     @books = Book.search(params)
+    
+    @yubi_valid = false
+    if @books.size == 1 && params.has_key?(:search) && Artwork.yubi_ish?(params[:search])
+      @yubi_valid = Artwork.yubi_valid?(params[:search])
+    end
     
     respond_to do |format|
       format.html # index.html.erb

@@ -29,7 +29,7 @@ class Book < ActiveRecord::Base
     
     if Artwork.yubi_ish? params[:search]
         art = Artwork.find_by_yubi params[:search][0..11]
-        return art unless art == Artwork.none
+        return [art.first.book] unless art == Artwork.none
     end
 
     # either we didn't find any book with the yubikey, or we have a non-yubi pattern

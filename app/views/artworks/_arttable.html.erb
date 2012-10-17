@@ -8,7 +8,7 @@
         <th>Owner</th>
         <th>Title</th>
         <th>Work number</th>
-        <th>Personal Message</th>
+        <th>Signature</th>
         <th></th>
         <th></th>
         <th></th>
@@ -25,7 +25,10 @@
         <% else %>
           <td><em>Unique work</em></td>
         <% end %>
-        <td><%= art.personal_msg %></td>
+        <td><% if art.signing_img.empty? %><em>unsigned</em>
+					  <% else %><a href=<%= "http://i17.tinypic.com/#{art.signing_img}.jpg" %> rel="prettyPhoto">signature</a>  <!-- <%= image_tag(art.signing_img + "_t") %> -->
+						<% end %>
+				</td>
         <div class="btn-group">
           <td><%= link_to 'Show', art, :class => "btn" %></td>
           <td><%= link_to 'Edit', edit_artwork_path(art), :class => "btn" %></td>

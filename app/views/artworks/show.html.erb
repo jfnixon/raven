@@ -36,6 +36,10 @@
       <b>Original work</b>
     <% end %>
   </p>
+
+	<p><% if @artwork.signing_img.empty? %>no signature<% else %>
+		 <a href=<%= "http://flickr.com/photos/#{@artwork.signing_img}" %> rel="prettyPhoto">signature</a><% end %>
+	</p>
 <% end %>
 
 <%= link_to 'Edit', edit_artwork_path(@artwork) %> | <%= link_to 'Back', artworks_path %>

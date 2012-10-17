@@ -11,10 +11,11 @@
 #  book_id      :integer
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  signing_img  :string(255)      default("")
 #
 
 class Artwork < ActiveRecord::Base
-  attr_accessible :yubikey, :yubi_otp, :work_number, :user_id, :book_id
+  attr_accessible :yubikey, :yubi_otp, :work_number, :user_id, :book_id, :signing_img
   
   # this artwork belongs to a single user
   belongs_to :user

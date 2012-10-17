@@ -16,6 +16,7 @@
   <fieldset class="admin_edit"><legend>Admin use only</legend>
   <%= f.association :user, :label => "Owner", :label_method => :full_name %>
   <%= f.association :book %>
+	<%= f.input :signing_img %>
   </fieldset>
   <%= f.button :submit, :class => "btn btn-primary" %>
 <% end %>
